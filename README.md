@@ -9,11 +9,11 @@ For a more specific example, let's say you have an alt named Maruru and you want
 
 If you need to put additional commands after an <st> line in a macro, you can use the `!capture` command like so (this example uses the Send addon):
 
-   /con sta !capture Maruru
-   /ma "Cure III" <stpc>
-   /con send Maruru equip main "Light Staff"
-   /wait 4
-   /con send Maruru equip main "Earth Staff"
+    /con sta !capture Maruru
+    /ma "Cure III" <stpc>
+    /con send Maruru equip main "Light Staff"
+    /wait 4
+    /con send Maruru equip main "Earth Staff"
 
 ## Installation
 After downloading, extract to your Windower addons folder. Make sure the folder is called SendTarget, rather than SendTarget-master or SendTarget-v1.whatever. Your file structure should look like this:
