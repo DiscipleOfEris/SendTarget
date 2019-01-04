@@ -1,6 +1,6 @@
 _addon.name = 'SendTarget'
 _addon.author = 'DiscipleOfEris'
-_addon.version = '1.0.0'
+_addon.version = '1.0.1'
 _addon.commands = {'sendtarget', 'sta'}
 
 require('tables')
@@ -49,7 +49,7 @@ windower.register_event('addon command', function(command, ...)
     
     command_queue:insert({char=args[1]:lower(), ts=os.time(), handled=false})
   else
-    if #args <= 1 then
+    if #args == 0 then
       log('You must provide some input to send. For example, //sta @others /ma "Cure III" <stpc>')
       return
     end
