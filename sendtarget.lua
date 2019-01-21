@@ -1,6 +1,6 @@
 _addon.name = 'SendTarget'
 _addon.author = 'DiscipleOfEris'
-_addon.version = '1.0.1'
+_addon.version = '1.0.2'
 _addon.commands = {'sendtarget', 'sta'}
 
 require('tables')
@@ -231,7 +231,7 @@ function handle_command(input)
   
   local name = args:concat(' '):gsub('"', '')
   if name:sub(1,1) == "'" then name = name:sub(2) end
-  if name:sub(#name) == "'" then name = name:sub(1,-1) end
+  if name:sub(#name) == "'" then name = name:sub(1,-2) end
   
   local target = t_arg
   local self = windower.ffxi.get_player()
@@ -240,7 +240,6 @@ function handle_command(input)
   
   self = self.id
   local self_only = S{'Self'}
-  
   if spell_prefixes:contains(prefix) then
     local spell = spells:with('en', name)
     if spell.targets:equals(self_only) then target = self end
@@ -250,12 +249,12 @@ function handle_command(input)
     local ja = job_abilities:with('en', name)
     if ja.targets:equals(self_only) then target = self end
     
-    inject_action_packet(ACTION_CATEGORY.WEAPON_SKILL_USE, ws, target)
+    inject_action_packet(ACTION_CATEGORY.JOB_ABILITY_USE, ja, target)
   elseif weapon_skill_prefixes:contains(prefix) then
     local ws = weapon_skills:with('en', name)
     if ws.targets:equals(self_only) then target = self end
     
-    inject_action_packet(ACTION_CATEGORY.JOB_ABILITY_USE, ja, target)
+    inject_action_packet(ACTION_CATEGORY.WEAPON_SKILL_USE, ws, target)
   end
   -- TODO: /attack, /range, /check, /assist, /follow, emotes
 end
