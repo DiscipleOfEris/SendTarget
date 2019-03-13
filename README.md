@@ -15,6 +15,11 @@ If you need to put additional commands after an <st> line in a macro, you can us
     /wait 4
     /con send Maruru equip main "Earth Staff"
 
+Note that <stpt> and <stal> do not work with subtarget capturing. To use those, make an FFXI macro that looks like:
+
+    /target <stal>
+    /con sta /ma 'Cure III' <lastst>
+
 ## Installation
 After downloading, extract to your Windower addons folder. Make sure the folder is called SendTarget, rather than SendTarget-master or SendTarget-v1.whatever. Your file structure should look like this:
 
@@ -31,7 +36,7 @@ jobs that don't will be a pain, but it can be automated by putting `windower.sen
 ## Commands
 You can use `//sendtarget` or `//sta`.
 
-    //sta <character_name>|@all|@others
+    //sta <character_name>|@all|@others <input_to_send>
     //sta !capture <character_name>|@all|@others
     //sta !mirror
     //sta !packets
