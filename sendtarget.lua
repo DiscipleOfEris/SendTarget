@@ -1,6 +1,6 @@
 _addon.name = 'SendTarget'
 _addon.author = 'DiscipleOfEris'
-_addon.version = '1.0.2'
+_addon.version = '1.0.3'
 _addon.commands = {'sendtarget', 'sta'}
 
 require('tables')
@@ -33,11 +33,27 @@ windower.register_event('addon command', function(command, ...)
     log('Can also use the !mirror, !packets, !capture <char_name|@others|@all> commands.')
     log('In a macro, you should use "/con sta" rather than "//sta".')
   elseif command == '!mirror' then
-    mirroring = not mirroring
+    local arg = args[1]
+    if not arg then mirroring = not mirroring
+    elseif T{'on', 'true'}:contains(arg) then mirroring = true
+    elseif T{'off', 'false'}:contains(arg) then mirroring = false
+    else
+      log('!mirror has valid arguments on/off/true/false. To toggle, pass no argument.')
+      return
+    end
+    
     if mirroring then log('Mirroring enabled. Will have all alts mimic this character.')
     else log('Mirroring disabled.') end
   elseif command == '!packets' then
-    send_packets = not send_packets
+    local arg = args[1]
+    if not arg then send_packets = not send_packets
+    elseif T{'on', 'true'}:contains(arg) then send_packets = true
+    elseif T{'off', 'false'}:contains(arg) then send_packets = false
+    else
+      log('!packets has valid arguments on/off/true/false. To toggle, pass no argument.')
+      return
+    end
+    
     if send_packets then log('Packet injection enabled. This is necessary unless GearSwap is active with a profile loaded.')
     else log('Packet injection disabled. Do this for compatibility with GearSwap when you have an active profile.') end
   elseif command == '!capture' then
@@ -50,7 +66,7 @@ windower.register_event('addon command', function(command, ...)
     command_queue:insert({char=args[1]:lower(), ts=os.time(), handled=false})
   else
     if #args == 0 then
-      log('You must provide some input to send. For example, //sta @others /ma "Cure III" <stpc>')
+      log('You must provide some input to send. For example, //sta @all /ma \'Thunder IV\' <stnpc>')
       return
     end
     
