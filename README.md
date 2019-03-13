@@ -36,7 +36,7 @@ jobs that don't will be a pain, but it can be automated by putting `windower.sen
 ## Commands
 You can use `//sendtarget` or `//sta`.
 
-    //sta <character_name>|@all|@others <input_to_send>
-    //sta !capture <character_name>|@all|@others
-    //sta !mirror
-    //sta !packets
+    //sta <character_name>|@all|@others <input_to_send>  
+    //sta !capture <character_name>|@all|@others  
+    //sta !mirror [on|off] -- Toggle/enable/disable mirroring, which makes alts copy all spells and abilities.  
+    //sta !packets [on|off] -- Toggle/enable/disable packet inject. Used for compatibility with GearSwap.  
