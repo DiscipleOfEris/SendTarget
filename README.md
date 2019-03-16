@@ -7,7 +7,7 @@ of their target. No `/assist` necessary!
 
 For a more specific example, let's say you have an alt named Maruru and you wanted to make a macro to have them heal based on your <st> choice. `/con sta Maruru /ma "Cure III" <stpc>`
 
-If you need to put additional commands after an <st> line in a macro, you can use the `!capture` command like so (this example uses the Send addon):
+If you need to put additional commands after an `<st>` line in a macro, you can use the `!capture` command like so (this example uses the Send addon):
 
     /con sta !capture Maruru
     /ma "Cure III" <stpc>
