@@ -1,6 +1,6 @@
 _addon.name = 'SendTarget'
 _addon.author = 'DiscipleOfEris'
-_addon.version = '1.0.3'
+_addon.version = '1.0.4'
 _addon.commands = {'sendtarget', 'sta'}
 
 require('tables')
@@ -33,10 +33,9 @@ windower.register_event('addon command', function(command, ...)
     log('Can also use the !mirror, !packets, !capture <char_name|@others|@all> commands.')
     log('In a macro, you should use "/con sta" rather than "//sta".')
   elseif command == '!mirror' then
-    local arg = args[1]
-    if not arg then mirroring = not mirroring
-    elseif T{'on', 'true'}:contains(arg) then mirroring = true
-    elseif T{'off', 'false'}:contains(arg) then mirroring = false
+    if not args[1] then mirroring = not mirroring
+    elseif args[1] == 'on' then mirroring = true
+    elseif args[1] == 'off' then mirroring = false
     else
       log('!mirror has valid arguments on/off/true/false. To toggle, pass no argument.')
       return
@@ -45,10 +44,9 @@ windower.register_event('addon command', function(command, ...)
     if mirroring then log('Mirroring enabled. Will have all alts mimic this character.')
     else log('Mirroring disabled.') end
   elseif command == '!packets' then
-    local arg = args[1]
-    if not arg then send_packets = not send_packets
-    elseif T{'on', 'true'}:contains(arg) then send_packets = true
-    elseif T{'off', 'false'}:contains(arg) then send_packets = false
+    if not args[1] then send_packets = not send_packets
+    elseif args[1] == 'on' then send_packets = true
+    elseif args[1] == 'off' then send_packets = false
     else
       log('!packets has valid arguments on/off/true/false. To toggle, pass no argument.')
       return
@@ -149,7 +147,7 @@ windower.register_event('outgoing text', function(_, modified, blocked, typed, a
           windower.add_to_chat(0, 'SendTarget: Another addon is blocking commands; SendTarget must be loaded first. If you have GearSwap, put "lua reload GearSwap" after "lua load SendTarget" in your init.txt script.')
         end
         
-        return true
+        return ''
       end
     end
   end
