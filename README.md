@@ -1,3 +1,5 @@
+# Development for this addon has been moved to https://github.com/DiscipleOfEris/Windower4Addons
+
 # SendTarget
 FFXI Windower addon that allows multiboxers to more easily send commands. You can capture targets and subtargets. Basic usage looks like `//sta CHAR_NAME /ma "Cure III" <stpc>`.
 
